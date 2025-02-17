@@ -402,7 +402,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
+              $ref: "#/components/schemas/AttachmentFormData"
       responses:
         "201":
           description: The created attachment
@@ -1250,6 +1250,15 @@ components:
                 - PENDING
                 - VALIDATED
                 - REJECTED
+
+    AttachmentFormData:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData
+        - required:
+            - attachment
+          properties:
+            attachment:
+              $ref: "#/components/schemas/Attachment"
 
     Event:
       allOf:
