@@ -402,7 +402,14 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/AttachmentFormData"
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to uploadx
+                attachment:
+                  $ref: "#/components/schemas/Attachment"
       responses:
         "201":
           description: The created attachment
@@ -1201,7 +1208,7 @@ components:
 
     Attachment:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - description: |
             An attachment is a file that is attached to an entity.
 
@@ -1250,16 +1257,6 @@ components:
                 - PENDING
                 - VALIDATED
                 - REJECTED
-
-    AttachmentFormData:
-      allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData
-        - required:
-            - attachment
-          properties:
-            attachment:
-              $ref: "#/components/schemas/Attachment"
-
     Event:
       allOf:
         - $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/CloudEvent.openapi.yaml#/components/schemas/CloudEvent
