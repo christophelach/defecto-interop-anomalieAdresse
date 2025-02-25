@@ -795,6 +795,10 @@ components:
         - required:
             - building
           properties:
+            relatedEntity:
+              type: array
+              items:
+                $ref: "#/components/schemas/RelatedBuilding"
             building:
               $ref: "#/components/schemas/AnomalieAdresseCreationBuilding"
 
@@ -802,10 +806,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/Building"
         - properties:
-            relatedEntity:
-              type: array
-              items:
-                $ref: "#/components/schemas/RelatedBuilding"
           required:
             - address
             - geographicLocation
@@ -842,9 +842,7 @@ components:
     AnomalieAdresseUpdate:
       allOf:
         - $ref: "#/components/schemas/AnomalieAdresseBase"
-        - required:
-            - relatedEntity
-          properties:
+        - properties:
             "@baseType":
               type: string
               default: "AnomalieAdresseUpdate"
@@ -867,6 +865,7 @@ components:
         - $ref: "#/components/schemas/AnomalieAdresseUpdate"
         - required:
             - issues
+            - relatedEntity
           properties:
             relatedEntity:
               description: |
