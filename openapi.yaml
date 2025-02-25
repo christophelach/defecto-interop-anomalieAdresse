@@ -805,12 +805,11 @@ components:
     AnomalieAdresseCreationBuilding:
       allOf:
         - $ref: "#/components/schemas/Building"
-        - properties:
-          required:
-            - address
-            - geographicLocation
-            - newConstruction
-            - type
+      required:
+        - address
+        - geographicLocation
+        - newConstruction
+        - type
 
     AnomalieAdresseNewBuilding:
       description: |
