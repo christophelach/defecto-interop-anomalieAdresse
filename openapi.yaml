@@ -616,6 +616,11 @@ components:
                 * `AnomalieAdresse.newBuilding`: "#/components/schemas/AnomalieAdresseNewBuilding"
                 * `AnomalieAdresse.modification`: "#/components/schemas/AnomalieAdresseUpdateImb"
                 * `AnomalieAdresse.nbLogements`: "#/components/schemas/AnomalieAdresseUpdateNbLogements"
+            relatedEntity:
+              type: object
+              description: "An entity that is related to the ticket such as a bill,\
+                \ a product, etc. The entity against which the ticket is associated.
+                \ this property has to be overriden in child classes"
             status:
               description: |
                 Le status du ticket.
