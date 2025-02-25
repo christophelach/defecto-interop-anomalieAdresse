@@ -656,10 +656,6 @@ components:
                 - CLOSED
                 - REJECTED
                 - CANCELED
-            relatedEntity:
-              type: array
-              items:
-                $ref: "#/components/schemas/RelatedBuilding"
             acknowledgedDuration:
               type: integer
               readOnly: true
@@ -800,7 +796,12 @@ components:
     AnomalieAdresseCreationBuilding:
       allOf:
         - $ref: "#/components/schemas/Building"
-        - required:
+        - properties:
+            relatedEntity:
+            type: array
+            items:
+              $ref: "#/components/schemas/RelatedBuilding"
+          required:
             - address
             - geographicLocation
             - newConstruction
@@ -842,17 +843,6 @@ components:
             "@baseType":
               type: string
               default: "AnomalieAdresseUpdate"
-            relatedEntity:
-              description: |
-                Liste des immeubles cibles de l'anomalie.
-
-                Si cette liste est supérieure à 1, alors l'OI traite les cas possibles de la demande en masse
-                et demande la résolution du ticket.
-                L'OC pourra rouvrir un ticket unitaire si besoin pour chaque cas non résolus.
-              type: array
-              minItems: 1
-              items:
-                $ref: "#/components/schemas/RelatedBuilding"
             sizeRefs:
               type: integer
               description: |
@@ -873,6 +863,17 @@ components:
         - required:
             - issues
           properties:
+            relatedEntity:
+              description: |
+                Liste des immeubles cibles de l'anomalie.
+
+                Si cette liste est supérieure à 1, alors l'OI traite les cas possibles de la demande en masse
+                et demande la résolution du ticket.
+                L'OC pourra rouvrir un ticket unitaire si besoin pour chaque cas non résolus.
+              type: array
+              minItems: 1
+              items:
+                $ref: "#/components/schemas/RelatedBuilding"
             issues:
               $ref: "#/components/schemas/AnomalieAdresseUpdateImbIssues"
 
@@ -1228,10 +1229,6 @@ components:
 
             Les fichiers contenant du code exécutable comme des scripts ou des macros sont interdits.
           properties:
-            id:
-              type: string
-              format: uuid
-              readOnly: true
             mimeType:
               enum:
                 - text/csv
