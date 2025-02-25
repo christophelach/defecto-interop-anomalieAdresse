@@ -798,9 +798,9 @@ components:
         - $ref: "#/components/schemas/Building"
         - properties:
             relatedEntity:
-            type: array
-            items:
-              $ref: "#/components/schemas/RelatedBuilding"
+              type: array
+              items:
+                $ref: "#/components/schemas/RelatedBuilding"
           required:
             - address
             - geographicLocation
